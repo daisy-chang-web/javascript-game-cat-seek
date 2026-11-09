@@ -28,40 +28,46 @@
   </head>
 
   <body>
-    <main class="start-screen">
-      
-      <section id="start-menu" class="start-menu"  aria-labelledby="game-title">
-        <h1 id="game-title">
-          Whack-a-Meow :
-          <span>Cat & Seek</span>
-        </h1>
-        <nav class="menu-actions" aria-label="Main menu">
-          <button class="menu-button menu-button-primary" type="button">
-            Start Playing
-          </button>
-          <button class="menu-button" type="button">Credits</button>
-        </nav>
-      </section>
+    <main class="screen-wrapper">
+      <div id="start-menu" class="start-screen">
+        <section class="menu" aria-labelledby="game-title">
+          <h1 id="game-title">
+            Whack-a-Meow :
+            <span>Cat & Seek</span>
+          </h1>
+          <nav class="menu-actions" aria-label="Main menu">
+            <button
+              id="start-btn"
+              class="menu-button white-bg border-style"
+              type="button"
+            >
+              Start Playing
+            </button>
+            <button
+              id="credits-btn"
+              class="menu-button primary-bg border-style"
+              type="button"
+            >
+              Credits
+            </button>
+          </nav>
+        </section>
+      </div>
 
-      <div id="game-screen" class="game-screen"  aria-label="Game screen" hidden>
-        <img
-          class="game-background"
-          src="images/game-bg.jpg"
-          alt="An illustrated-style living room, with a cat sitting on the sofa, surrounded by plants and furniture"
-        />
+      <div id="game-screen" class="game-screen" aria-label="Game screen" hidden>
         <div class="game-status" aria-label="Game status">
           <output
-            class="game-timer"
+            class="game-timer status-wrapper white-bg border-style"
             id="game-timer"
             aria-label="Time remaining"
           >
             00:30
           </output>
-          <output class="game-score" id="game-score" aria-label="Cats found">
-            <img
-              src="images/cat-energetic-idle.png"
-              alt="Tabby cat peeking out"
-            />
+          <output
+            class="game-score status-wrapper white-bg border-style"
+            id="game-score"
+            aria-label="Cats found"
+          >
             <p id="cats-found">
               <span class="current-score">0</span>
               <span class="score-separator">/</span>
@@ -69,7 +75,7 @@
             </p>
           </output>
           <button
-            class="pause-button"
+            class="pause-button status-wrapper white-bg border-style"
             id="pause-button"
             type="button"
             aria-label="Pause game"
@@ -79,20 +85,38 @@
         </div>
       </div>
 
-      <section id="game-result" class="end-menu"  aria-labelledby="game-result-title" hidden>
+      <div id="result-screen" class="result-screen" hidden>
+      <section
+        class="result-menu menu"
+        aria-labelledby="game-result-title"
+      >
         <p class="result">You found <span class="final-score">0</span> Cats</p>
-        <h1 id="game-result-title">
-          Don't you like cats...? 😿
-        </h1>
+        <h1 id="game-result-title">Don't you like cats...? 😿</h1>
         <nav class="menu-actions" aria-label="result actions">
-          <button class="menu-button menu-button-primary" type="button">
+          <button
+            id="again-btn"
+            class="menu-button white-bg border-style"
+            type="button"
+          >
             Play Again
           </button>
-          <button class="menu-button" type="button">Back to Menu</button>
-          <button class="menu-button" type="button">Credits</button>
+          <button
+            id="back-btn"
+            class="menu-button primary-bg border-style"
+            type="button"
+          >
+            Back to Menu
+          </button>
+          <button
+            id="credits-btn-end"
+            class="menu-button primary-bg border-style"
+            type="button"
+          >
+            Credits
+          </button>
         </nav>
       </section>
-
+    </div>
     </main>
   </body>
 </html>
