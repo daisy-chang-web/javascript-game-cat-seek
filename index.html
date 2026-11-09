@@ -24,12 +24,13 @@
 
     <link rel="stylesheet" href="styles/normalize-fwd.css" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <script src="scripts/script.js" defer></script>
+    <script src="scripts/scripts.js" defer></script>
   </head>
 
   <body>
     <main class="start-screen">
-      <section class="start-menu" aria-labelledby="game-title">
+      
+      <section id="start-menu" class="start-menu"  aria-labelledby="game-title">
         <h1 id="game-title">
           Whack-a-Meow :
           <span>Cat & Seek</span>
@@ -42,7 +43,7 @@
         </nav>
       </section>
 
-      <div class="game-screen" id="game-screen" aria-label="Game screen" hidden>
+      <div id="game-screen" class="game-screen"  aria-label="Game screen" hidden>
         <img
           class="game-background"
           src="images/game-bg.jpg"
@@ -57,7 +58,10 @@
             00:30
           </output>
           <output class="game-score" id="game-score" aria-label="Cats found">
-            <img src="images/cat-energetic-idle.png" alt="Tabby cat peeking out" />
+            <img
+              src="images/cat-energetic-idle.png"
+              alt="Tabby cat peeking out"
+            />
             <p id="cats-found">
               <span class="current-score">0</span>
               <span class="score-separator">/</span>
@@ -74,6 +78,21 @@
           </button>
         </div>
       </div>
+
+      <section id="game-result" class="end-menu"  aria-labelledby="game-result-title" hidden>
+        <p class="result">You found <span class="final-score">0</span> Cats</p>
+        <h1 id="game-result-title">
+          Don't you like cats...? 😿
+        </h1>
+        <nav class="menu-actions" aria-label="result actions">
+          <button class="menu-button menu-button-primary" type="button">
+            Play Again
+          </button>
+          <button class="menu-button" type="button">Back to Menu</button>
+          <button class="menu-button" type="button">Credits</button>
+        </nav>
+      </section>
+
     </main>
   </body>
 </html>
