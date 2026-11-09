@@ -1,6 +1,7 @@
 :root {
   --primary-color: #fdf7ed;
   --button-color: #ffffff;
+  --backdrop-color:#fdf7ed74;
   --border-color: #625b55;
   --border-focus-color: #31251d;
   --text-color: #14110f;
@@ -129,6 +130,8 @@ body {
   color: var(--text-color);
 }
 
+
+
 /* result-screen --------------------------------------------------------------------------------*/
 .result-screen {
   display: grid;
@@ -143,4 +146,60 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
+}
+
+/* dialogs --------------------------------------------------------------------------------------*/
+dialog {
+  position: fixed;
+  width: min(90vw, 28rem);
+  max-height: min(85vh, 40rem);
+  margin: auto;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  overflow: auto;
+  border: 4px solid var(--border-color);
+  border-radius: 2rem;
+  background: var(--primary-color);
+  color: var(--text-color);
+  box-shadow: 0 1rem 3rem rgb(49 37 29 / 18%);
+}
+
+dialog::backdrop {
+  background:var(--backdrop-color);
+  backdrop-filter: blur(5px);
+}
+
+dialog h2 {
+  margin: 0 2rem 1rem 0;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  line-height: 1.1;
+}
+
+dialog p {
+  margin: 0 0 1rem;
+}
+
+#credits-dialog p {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+#close-credits-btn {
+  position: absolute;
+  display:block;
+  top: 0;
+  right: 0.9rem;
+  padding: 0 0.7rem;
+  border: 0;
+  background: transparent;
+  font-size: 3rem;
+}
+
+#close-credits-btn:focus-visible {
+  outline: 3px solid var(--border-focus-color);
+  outline-offset: 3px;
+}
+
+#pause-dialog .menu-actions {
+  margin-top: 1.5rem;
 }
