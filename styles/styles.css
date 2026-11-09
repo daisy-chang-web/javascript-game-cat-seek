@@ -6,6 +6,26 @@
   --text-color: #14110f;
 }
 
+/* Typography */
+body {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  place-items: center;
+  overflow: hidden;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: "Caveat", cursive;
+  font-size: 1.2rem;
+}
+
+/* Element */
+[hidden] {
+  display: none !important;
+}
+
+/* components */
 .white-bg {
   background: var(--button-color);
 }
@@ -21,27 +41,14 @@
   outline-offset: 4px;
 }
 
-body {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  place-items: center;
-  overflow: hidden;
-  background: var(--primary-color);
-  color: var(--text-color);
-  font-family: "Caveat", cursive;
-  font-size: 1.2rem;
-}
-
-[hidden] {
-  display: none !important;
-}
+/* Layout */
 .screen-wrapper{
   display: grid;
   width: 100%;
   height: 100%;
 }
+
+/* start-screen -----------------------------------------------------------------------------------*/
 .start-screen {
   display: grid;
   width: 100%;
@@ -85,8 +92,9 @@ body {
   line-height: 1.1;
 }
 
-/* game-screen */
+/* game-screen -----------------------------------------------------------------------------------*/
 .game-screen{
+  position: relative;
   display: grid;
   width: 100%;
   height: 100vh;
@@ -95,11 +103,11 @@ body {
   background: var(--primary-color) url("../images/game-bg.jpg") center / auto 100% no-repeat;
 }
 .game-status{
-  position:fixed;
+  position:absolute;
   left:2vw;
   top:2vw;
   display:flex;
-  height: clamp(2rem, 10vh, 4rem);
+  height: clamp(2rem, 5vw, 4rem);
   justify-content: start;
   align-items: stretch;
   gap: clamp(0.2rem, 1vw, 1.5rem);
@@ -113,8 +121,15 @@ body {
   font-weight: 700;
   line-height: 1.1;
   border-radius: 20px;
+  gap: 10px;
+}
+.icon{
+  height: clamp(1rem, 2vw, 1.8rem);
+  width: auto;
+  color: var(--text-color);
 }
 
+/* result-screen --------------------------------------------------------------------------------*/
 .result-screen {
   display: grid;
   width: 100%;
