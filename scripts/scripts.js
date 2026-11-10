@@ -10,9 +10,10 @@ const countdownDisplay = document.getElementById("countdown");
 const gameTimerOutput = document.getElementById("game-timer");
 const currentScore = document.querySelector(".current-score");
 const finalScore = document.querySelector(".final-score");
+const resultMessage = document.getElementById("game-result-title");
 const spots = document.querySelectorAll(".spot");
 
-// timer settings-----------------------------------------------------------------------------
+// timer settings--------
 const gameDuration = 30;
 let remainingSeconds = gameDuration;
 let timerID = null;
@@ -29,7 +30,7 @@ function stopTimer() {
   timerID = null;
 }
 
-// countdown logic-----------------------------------------------------------------------------
+// countdown logic----------
 function startCountdown(onComplete) {
   let count = 3;
 
@@ -55,8 +56,11 @@ function startCountdown(onComplete) {
 
 // game logic-----------------------------------------------------------------------------
 let score = 0;
+let total = 0;
 let lastSpot = null;
 let isPetted = false;
+let duration = 1500;
+let stayTime = 300;
 
 const cats = [
   {
@@ -90,12 +94,16 @@ function getRandomSpot() {
   return selectedSpot;
 }
 
-
 function showSingleCat() {
+  if(remainingSeconds < duration/1000) return;
   const spot = getRandomSpot();
   const CurrentCat = getRandomCat();
   const catImg = spot.querySelector(".cat");
   spot.classList.add("show");
+  total++;
+  document.querySelectorAll(".total-cats").forEach((element) => {
+    element.textContent = total;
+  });
 
   catImg.src = `images/cat-${CurrentCat.emotion}-idle.png`;
   catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat peeking out`;
@@ -110,7 +118,7 @@ function showSingleCat() {
       setTimeout(() => {
         spot.classList.remove("show");
         isPetted = false;
-      }, 300);
+      }, stayTime);
     }
   };
 
@@ -121,9 +129,21 @@ function showSingleCat() {
       setTimeout(() => {
         spot.classList.remove("show");
         isPetted = false;
-      }, 300);
+      }, stayTime);
     }
-  }, 1500);
+  }, duration);
+}
+
+function updateResultMessage() {
+  if (score >= 25) {
+    resultMessage.textContent = "You caught us! Fine, you win! 😸";
+  } else if (score >= 15) {
+    resultMessage.textContent = "Is that all? I wasn't even trying! 😼";
+  } else if (score >= 5) {
+    resultMessage.textContent = "You gotta be quicker next time~ 🐾";
+  } else {
+    resultMessage.textContent = "Don't you like cats...? 😿";
+  }
 }
 
 //screen switching functions-----------------------------------------------------------------------------
@@ -131,8 +151,14 @@ function showGameScreen() {
   stopTimer();
   remainingSeconds = gameDuration;
   updateTimer();
+
   score = 0;
-  currentScore.textContent = 0;
+  total = 0;
+  currentScore.textContent = score;
+  document.querySelectorAll(".total-cats").forEach((element) => {
+    element.textContent = total;
+  });
+
   startMenu.hidden = true;
   gameScreen.hidden = false;
   resultScreen.hidden = true;
@@ -148,8 +174,12 @@ function showGameScreen() {
       if (remainingSeconds <= 0) {
         stopTimer();
         finalScore.textContent = currentScore.textContent;
+        document.querySelectorAll(".total-cats").forEach((element) => {
+          element.textContent = total;
+        });
         gameScreen.hidden = true;
         resultScreen.hidden = false;
+        updateResultMessage();
       }
     }, 1000);
   });
