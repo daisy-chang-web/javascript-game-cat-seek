@@ -107,6 +107,20 @@ body {
   height: min(100vh, calc(100vw * (9 / 16)));
   background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
 }
+
+.countdown-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Caveat', sans-serif;
+  font-size: 8rem;
+  font-weight: bold;
+  color: var(--text-color);
+  z-index: 50;
+  pointer-events: none;
+}
+
 .game-status{
   --status-height: 5cqw;
   position:absolute;
@@ -161,14 +175,17 @@ body {
   height: 5.8cqw;
   position: relative;
   overflow: hidden; 
-  border:#14110f solid 1px;
 }
 
 .cat {
   position: absolute;
   width: 100%;
   height: auto;
-  transition: transform 0.25s ease-out; 
+  transition: transform 0.5s ease-out; 
+
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .spot-picture {
@@ -264,48 +281,48 @@ body {
   left: 20%;
   transform: rotate(-10deg);
 }
-/* .spot-drawer .cat {
+.spot-drawer .cat {
   transform: translateY(100%);
 }
 .spot-drawer.show .cat {
   transform: translateY(0);
-} */
+}
 
 .spot-celling {
   top: 0%;
   left: 50%;
   transform: rotate(180deg);
 }
-/* .spot-celling .cat {
+.spot-celling .cat {
   transform: translateY(100%);
 }
 .spot-celling.show .cat {
   transform: translateY(0);
-} */
+}
 
 .spot-under-table {
   top: 86%;
   left: 66%;
   transform: rotate(160deg);
 }
-/* .spot-under-table .cat {
+.spot-under-table .cat {
   transform: translateY(100%);
 }
 .spot-under-table.show .cat {
   transform: translateY(0);
-} */
+}
 
 .spot-curtain {
   top: 29%;
   left: 92.3%;
   transform: rotate(90deg);
 }
-/* .spot-curtain .cat {
+.spot-curtain .cat {
   transform: translateY(100%);
 }
 .spot-curtain.show .cat {
   transform: translateY(0);
-} */
+}
 
 /* result-screen --------------------------------------------------------------------------------*/
 .result-screen {

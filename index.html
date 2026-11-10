@@ -54,51 +54,51 @@
         </section>
       </div>
 
-      <div
-        id="game-screen"
-        class="game-screen game-area"
-        aria-label="Game screen"
-        hidden
-      >
-          <div class="game-status" aria-label="Game status">
-            <output
-              class="game-timer status-wrapper white-bg border-style"
-              id="game-timer"
-              aria-label="Time remaining"
-            >
-              00:30
-            </output>
-            <output
-              class="game-score status-wrapper white-bg border-style"
-              id="game-score"
-              aria-label="Cats found"
-            >
-              <svg class="cat-icon icon" viewBox="0 0 16 16" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M12.293 1.707c.63-.63 1.707-.184 1.707.707V9l-.007.257A5 5 0 0 1 13.9 10h.6a.5.5 0 0 1 0 1h-.918A5 5 0 0 1 13 12h1.5a.5.5 0 0 1 0 1H12c-.835.628-1.874 1-3 1H7a4.98 4.98 0 0 1-3-1H1.5a.5.5 0 0 1 0-1H3a5 5 0 0 1-.583-1H1.5a.5.5 0 0 1 0-1h.6a5 5 0 0 1-.094-.743L2 9V2.414c0-.89 1.077-1.337 1.707-.707l2.378 2.378Q6.531 4.001 7 4h2q.47.001.914.085zM7.707 11a.707.707 0 0 0-.5 1.207l.44.44a.5.5 0 0 0 .707 0l.44-.44a.708.708 0 0 0-.5-1.207zM5.5 8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m5 0a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5"
-                />
-              </svg>
-              <p id="cats-found">
-                <span class="current-score">0</span>
-                <span class="score-separator">/</span>
-                <span class="max-score">30</span>
-              </p>
-            </output>
-            <button
-              class="pause-button status-wrapper white-bg border-style"
-              id="pause-button"
-              type="button"
-              aria-label="Pause game"
-            >
-              <svg class="pause-icon icon" viewBox="0 0 16 16" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5"
-                />
-              </svg>
-            </button>
-          </div>
+      <div id="game-screen" class="game-screen" aria-label="Game screen" hidden>
+
+        <div id="countdown" class="countdown-text" hidden>3</div>
+
+        <div class="game-status" aria-label="Game status">
+          <output
+            class="game-timer status-wrapper white-bg border-style"
+            id="game-timer"
+            aria-label="Time remaining"
+          >
+            00:30
+          </output>
+          <output
+            class="game-score status-wrapper white-bg border-style"
+            id="game-score"
+            aria-label="Cats found"
+          >
+            <svg class="cat-icon icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.293 1.707c.63-.63 1.707-.184 1.707.707V9l-.007.257A5 5 0 0 1 13.9 10h.6a.5.5 0 0 1 0 1h-.918A5 5 0 0 1 13 12h1.5a.5.5 0 0 1 0 1H12c-.835.628-1.874 1-3 1H7a4.98 4.98 0 0 1-3-1H1.5a.5.5 0 0 1 0-1H3a5 5 0 0 1-.583-1H1.5a.5.5 0 0 1 0-1h.6a5 5 0 0 1-.094-.743L2 9V2.414c0-.89 1.077-1.337 1.707-.707l2.378 2.378Q6.531 4.001 7 4h2q.47.001.914.085zM7.707 11a.707.707 0 0 0-.5 1.207l.44.44a.5.5 0 0 0 .707 0l.44-.44a.708.708 0 0 0-.5-1.207zM5.5 8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m5 0a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5"
+              />
+            </svg>
+            <p id="cats-found">
+              <span class="current-score">0</span>
+              <span class="score-separator">/</span>
+              <span class="max-score">30</span>
+            </p>
+          </output>
+          <button
+            class="pause-button status-wrapper white-bg border-style"
+            id="pause-button"
+            type="button"
+            aria-label="Pause game"
+          >
+            <svg class="pause-icon icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="game-area" aria-label="Game area">
           <div class="spot spot-picture" data-spot="1">
             <div class="mask-container">
               <img
@@ -207,6 +207,7 @@
               />
             </div>
           </div>
+        </div>
       </div>
 
       <div id="result-screen" class="result-screen" hidden>
