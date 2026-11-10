@@ -23,11 +23,13 @@ let score = 0;
 let total = 0;
 let lastSpot = null;
 let isPetted = false;
+let isPaused = false;
 
 let catSpawnTimerID = null;
 let catSpawnInterval = 700;
 let duration = 950;
 let stayTime = 200;
+const catTimeouts = new Set();
 
 const levels = [
   { difficulty: "easy", catSpawnInterval: 1000, duration: 1500, stayTime: 300 },
@@ -79,6 +81,60 @@ function stopTimer() {
   timerID = null;
 }
 
+// pause setting------------------(AI assisted)
+function scheduleCatTimeout(callback, delay) {
+  const task = {
+    callback,
+    remaining: delay,
+    startedAt: null,
+    timeoutID: null,
+  };
+  catTimeouts.add(task);
+
+  if (!isPaused) {
+    runCatTimeout(task);
+  }
+}
+
+function runCatTimeout(task) {
+  task.startedAt = Date.now();
+  task.timeoutID = setTimeout(() => {
+    catTimeouts.delete(task);
+    task.callback();
+  }, task.remaining);
+}
+
+function pauseGame() {
+  if (isPaused) return;
+  isPaused = true;
+
+  catTimeouts.forEach((task) => {
+    clearTimeout(task.timeoutID);
+    task.remaining = Math.max(0, task.remaining - (Date.now() - task.startedAt));
+    task.timeoutID = null;
+    task.startedAt = null;
+  });
+
+  if (!pauseDialog.open) {
+    pauseDialog.showModal();
+  }
+}
+
+function resumeGame() {
+  if (!isPaused) return;
+  isPaused = false;
+
+  catTimeouts.forEach((task) => runCatTimeout(task));
+}
+
+function clearCatTimeouts() {
+  catTimeouts.forEach((task) => clearTimeout(task.timeoutID));
+  catTimeouts.clear();
+  isPaused = false;
+  spots.forEach((spot) => spot.classList.remove("show"));
+  isPetted = false;
+}
+
 // countdown logic----------
 function startCountdown(onComplete) {
   let count = 3;
@@ -88,6 +144,8 @@ function startCountdown(onComplete) {
   countdownDisplay.textContent = count;
 
   countdownID = setInterval(() => {
+    if (isPaused) return;
+
     count--;
 
     if (count > 0) {
@@ -121,7 +179,7 @@ function getRandomSpot() {
 }
 
 function removeCat(spot) {
-  setTimeout(() => {
+  scheduleCatTimeout(() => {
     spot.classList.remove("show");
     isPetted = false;
   }, stayTime);
@@ -149,7 +207,7 @@ function showSingleCat() {
     }
   };
 
-  setTimeout(() => {
+  scheduleCatTimeout(() => {
     if (!isPetted && spot.classList.contains("show")) {
       catImg.src = `images/cat-${CurrentCat.emotion}-miss.png`;
       catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat ${CurrentCat.miss}`;
@@ -184,6 +242,7 @@ function updateResultMessage() {
 function showGameScreen() {
   stopTimer();
   stopCatSpawner();
+  clearCatTimeouts();
   remainingSeconds = gameDuration;
   updateTimer();
 
@@ -200,7 +259,7 @@ function showGameScreen() {
 
   startCountdown(() => {
     timerID = setInterval(() => {
-      if (pauseDialog.open) return;
+      if (isPaused) return;
 
       remainingSeconds -= 1;
       updateTimer();
@@ -208,6 +267,7 @@ function showGameScreen() {
       if (remainingSeconds <= 0) {
         stopTimer();
         stopCatSpawner();
+        clearCatTimeouts();
         finalScore.textContent = currentScore.textContent;
         document.querySelectorAll(".total-cats").forEach((element) => {
           element.textContent = total;
@@ -219,7 +279,7 @@ function showGameScreen() {
     }, 1000);
 
     catSpawnTimerID = setInterval(() => {
-      if (pauseDialog.open || remainingSeconds <= 0) return;
+      if (isPaused || remainingSeconds <= 0) return;
       showSingleCat();
     }, catSpawnInterval);
   });
@@ -228,6 +288,7 @@ function showGameScreen() {
 function showStartMenu() {
   stopTimer();
   stopCatSpawner();
+  clearCatTimeouts();
   clearInterval(countdownID);
   countdownID = null;
   countdownDisplay.hidden = true;
@@ -261,21 +322,8 @@ Allbuttons.forEach((button) => {
       case "close-level-btn":
         levelDialog.close();
         break;
-      case "again-btn":
-        showGameScreen();
-        break;
-      case "back-btn":
-        showStartMenu();
-        break;
-      case "credits-btn":
-      case "credits-btn-end":
-        creditsDialog.showModal();
-        break;
-      case "close-credits-btn":
-        creditsDialog.close();
-        break;
       case "pause-button":
-        pauseDialog.showModal();
+        pauseGame();
         break;
       case "continue-btn":
         pauseDialog.close();
@@ -288,8 +336,23 @@ Allbuttons.forEach((button) => {
         pauseDialog.close();
         showStartMenu();
         break;
+        case "again-btn":
+        showGameScreen();
+        break;
+      case "back-btn":
+        showStartMenu();
+        break;
+      case "credits-btn":
+      case "credits-btn-end":
+        creditsDialog.showModal();
+        break;
+      case "close-credits-btn":
+        creditsDialog.close();
+        break;
     }
   });
 });
+
+pauseDialog.addEventListener("close", resumeGame);
 
 updateTimer();
