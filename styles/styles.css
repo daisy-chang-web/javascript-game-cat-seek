@@ -333,8 +333,10 @@ body {
   place-items: center;
   background: var(--primary-color) url("../images/result-bg.jpg") center / auto 100% no-repeat;
 }
+
 .result-menu p{
   margin: 0;
+  margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
@@ -376,7 +378,7 @@ dialog p {
   line-height: 1.5;
 }
 
-#close-credits-btn {
+.close-btn {
   position: absolute;
   display:block;
   top: 0;
@@ -387,7 +389,7 @@ dialog p {
   font-size: 3rem;
 }
 
-#close-credits-btn:focus-visible {
+.close-btn:focus-visible {
   outline: 3px solid var(--border-focus-color);
   outline-offset: 3px;
 }

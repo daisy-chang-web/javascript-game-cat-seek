@@ -3,6 +3,7 @@ const Allbuttons = document.querySelectorAll("button[id]");
 const startMenu = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
 const resultScreen = document.getElementById("result-screen");
+const levelDialog = document.getElementById("level-dialog");
 const creditsDialog = document.getElementById("credits-dialog");
 const pauseDialog = document.getElementById("pause-dialog");
 const countdownDisplay = document.getElementById("countdown");
@@ -13,12 +14,60 @@ const finalScore = document.querySelector(".final-score");
 const resultMessage = document.getElementById("game-result-title");
 const spots = document.querySelectorAll(".spot");
 
-// timer settings--------
 const gameDuration = 30;
 let remainingSeconds = gameDuration;
 let timerID = null;
 let countdownID = null;
 
+let score = 0;
+let total = 0;
+let lastSpot = null;
+let isPetted = false;
+
+let catSpawnTimerID = null;
+let catSpawnInterval = 700;
+let duration = 950;
+let stayTime = 200;
+
+const levels = [
+  { difficulty: "easy", catSpawnInterval: 1000, duration: 1500, stayTime: 300 },
+  {
+    difficulty: "medium",
+    catSpawnInterval: 900,
+    duration: 1000,
+    stayTime: 250,
+  },
+  { difficulty: "hard", catSpawnInterval: 700, duration: 950, stayTime: 200 },
+];
+
+const cats = [
+  {
+    emotion: "Energetic",
+    breed: "orange",
+    pet: "feels very happy",
+    miss: "make a funny face",
+  },
+  {
+    emotion: "grumpy",
+    breed: "tabby",
+    pet: "feels happy",
+    miss: "feels upset",
+  },
+  { emotion: "shy", breed: "calico", pet: "feels happy", miss: "feels sad" },
+  { emotion: "angry", breed: "black", pet: "feels furious", miss: "hates you" },
+];
+
+// level selection logic----------------
+function setLevel(levelName) {
+  const level = levels.find((lvl) => lvl.difficulty === levelName);
+  if (level) {
+    catSpawnInterval = level.catSpawnInterval;
+    duration = level.duration;
+    stayTime = level.stayTime;
+  }
+}
+
+// timer settings---------------
 function updateTimer() {
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
@@ -55,29 +104,6 @@ function startCountdown(onComplete) {
 }
 
 // game logic-----------------------------------------------------------------------------
-let score = 0;
-let total = 0;
-let lastSpot = null;
-let isPetted = false;
-let duration = 1500;
-let stayTime = 300;
-
-const cats = [
-  {
-    emotion: "Energetic",
-    breed: "orange",
-    pet: "feels very happy",
-    miss: "make a funny face",
-  },
-  {
-    emotion: "grumpy",
-    breed: "tabby",
-    pet: "feels happy",
-    miss: "feels upset",
-  },
-  { emotion: "shy", breed: "calico", pet: "feels happy", miss: "feels sad" },
-  { emotion: "angry", breed: "black", pet: "feels furious", miss: "hates you" },
-];
 
 function getRandomCat() {
   const randomIndex = Math.floor(Math.random() * cats.length);
@@ -94,17 +120,20 @@ function getRandomSpot() {
   return selectedSpot;
 }
 
+function removeCat(spot) {
+  setTimeout(() => {
+    spot.classList.remove("show");
+    isPetted = false;
+  }, stayTime);
+}
+
 function showSingleCat() {
-  if(remainingSeconds < duration/1000) return;
+  if (remainingSeconds < duration / 1000) return;
   const spot = getRandomSpot();
   const CurrentCat = getRandomCat();
   const catImg = spot.querySelector(".cat");
-  spot.classList.add("show");
-  total++;
-  document.querySelectorAll(".total-cats").forEach((element) => {
-    element.textContent = total;
-  });
 
+  spot.classList.add("show");
   catImg.src = `images/cat-${CurrentCat.emotion}-idle.png`;
   catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat peeking out`;
 
@@ -113,12 +142,10 @@ function showSingleCat() {
       isPetted = true;
       catImg.src = `images/cat-${CurrentCat.emotion}-pet.png`;
       catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat ${CurrentCat.pet}`;
+      removeCat(spot);
+
       score++;
       currentScore.textContent = score;
-      setTimeout(() => {
-        spot.classList.remove("show");
-        isPetted = false;
-      }, stayTime);
     }
   };
 
@@ -126,20 +153,27 @@ function showSingleCat() {
     if (!isPetted && spot.classList.contains("show")) {
       catImg.src = `images/cat-${CurrentCat.emotion}-miss.png`;
       catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat ${CurrentCat.miss}`;
-      setTimeout(() => {
-        spot.classList.remove("show");
-        isPetted = false;
-      }, stayTime);
+      removeCat(spot);
     }
   }, duration);
+
+  total++;
+  document.querySelectorAll(".total-cats").forEach((element) => {
+    element.textContent = total;
+  });
+}
+
+function stopCatSpawner() {
+  clearInterval(catSpawnTimerID);
+  catSpawnTimerID = null;
 }
 
 function updateResultMessage() {
-  if (score >= 25) {
+  if (score / total >= 4 / 5) {
     resultMessage.textContent = "You caught us! Fine, you win! 😸";
-  } else if (score >= 15) {
+  } else if (score / total >= 1 / 2) {
     resultMessage.textContent = "Is that all? I wasn't even trying! 😼";
-  } else if (score >= 5) {
+  } else if (score / total >= 1 / 4) {
     resultMessage.textContent = "You gotta be quicker next time~ 🐾";
   } else {
     resultMessage.textContent = "Don't you like cats...? 😿";
@@ -149,6 +183,7 @@ function updateResultMessage() {
 //screen switching functions-----------------------------------------------------------------------------
 function showGameScreen() {
   stopTimer();
+  stopCatSpawner();
   remainingSeconds = gameDuration;
   updateTimer();
 
@@ -169,10 +204,10 @@ function showGameScreen() {
 
       remainingSeconds -= 1;
       updateTimer();
-      showSingleCat();
 
       if (remainingSeconds <= 0) {
         stopTimer();
+        stopCatSpawner();
         finalScore.textContent = currentScore.textContent;
         document.querySelectorAll(".total-cats").forEach((element) => {
           element.textContent = total;
@@ -182,11 +217,17 @@ function showGameScreen() {
         updateResultMessage();
       }
     }, 1000);
+
+    catSpawnTimerID = setInterval(() => {
+      if (pauseDialog.open || remainingSeconds <= 0) return;
+      showSingleCat();
+    }, catSpawnInterval);
   });
 }
 
 function showStartMenu() {
   stopTimer();
+  stopCatSpawner();
   clearInterval(countdownID);
   countdownID = null;
   countdownDisplay.hidden = true;
@@ -200,6 +241,26 @@ Allbuttons.forEach((button) => {
   button.addEventListener("click", (event) => {
     switch (event.currentTarget.id) {
       case "start-btn":
+        levelDialog.showModal();
+        break;
+      case "easy-btn":
+        setLevel("easy");
+        levelDialog.close();
+        showGameScreen();
+        break;
+      case "medium-btn":
+        setLevel("medium");
+        levelDialog.close();
+        showGameScreen();
+        break;
+      case "hard-btn":
+        setLevel("hard");
+        levelDialog.close();
+        showGameScreen();
+        break;
+      case "close-level-btn":
+        levelDialog.close();
+        break;
       case "again-btn":
         showGameScreen();
         break;

@@ -210,7 +210,8 @@
       <div id="result-screen" class="result-screen" hidden>
         <section class="result-menu menu" aria-labelledby="game-result-title">
           <p class="result">
-            Total <span class="total-cats">0</span>: You found <span class="final-score">0</span> Cats
+            Total <span class="total-cats">0</span>: You found
+            <span class="final-score">0</span> Cats
           </p>
           <h1 id="game-result-title">Don't you like cats...? 😿</h1>
           <nav class="menu-actions" aria-label="result actions">
@@ -240,8 +241,38 @@
       </div>
 
       <!-- Popup------------------------------------------------------------------------------------------------->
+      <dialog id="level-dialog" aria-labelledby="level-title">
+        <h2 id="level-title">Select Level</h2>
+          <button id="close-level-btn" class="close-btn" type="button" aria-label="Close credits">
+          x
+        </button>
+        <nav class="menu-actions" aria-label="Level menu">
+          <button
+            id="easy-btn"
+            class="menu-button white-bg border-style"
+            type="button"
+          >
+            Easy
+          </button>
+          <button
+            id="medium-btn"
+            class="menu-button white-bg border-style"
+            type="button"
+          >
+            Medium
+          </button>
+          <button
+            id="hard-btn"
+            class="menu-button white-bg border-style"
+            type="button"
+          >
+            Hard
+          </button>
+        </nav>
+      </dialog>
+
       <dialog id="credits-dialog" aria-labelledby="credits-title">
-        <button id="close-credits-btn" type="button" aria-label="Close credits">
+        <button id="close-credits-btn" class="close-btn" type="button" aria-label="Close credits">
           x
         </button>
         <h2 id="credits-title">Credits &amp; Attributions</h2>
