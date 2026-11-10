@@ -29,7 +29,7 @@
 
   <body>
     <main class="screen-wrapper">
-      <div id="start-menu" class="start-screen">
+      <div id="start-screen" class="start-screen">
         <section class="menu" aria-labelledby="game-title">
           <h1 id="game-title">
             Whack-a-Meow :
@@ -94,6 +94,117 @@
             </svg>
           </button>
         </div>
+        <!-- hiding spots -->
+        <div class="game-area" id="game-area" aria-label="Game area">
+          <div class="spot spot-picture" data-spot="1">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-pot" data-spot="2">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-plants" data-spot="3">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-sofa" data-spot="4">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-floor" data-spot="5">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-window" data-spot="6">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-table" data-spot="7">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-box" data-spot="8">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-drawer" data-spot="9">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-celling" data-spot="10">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-under-table" data-spot="11">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+          <div class="spot spot-curtain" data-spot="12">
+            <div class="mask-container">
+              <img
+                src="images/cat-energetic-idle.png"
+                alt="Energetic Orange cat peeking out"
+                class="cat"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="result-screen" class="result-screen" hidden>
@@ -128,8 +239,7 @@
         </section>
       </div>
 
-      <!-- Popup--------------------------------------------------->
-      <!-- cedits -->
+      <!-- Popup------------------------------------------------------------------------------------------------->
       <dialog id="credits-dialog" aria-labelledby="credits-title">
         <button id="close-credits-btn" type="button" aria-label="Close credits">
           x
@@ -137,15 +247,15 @@
         <h2 id="credits-title">Credits &amp; Attributions</h2>
         <p>
           Visuals: Illustrated and redrawn by Daisy Chang (scene layout inspired
-          by Pinterest storybook references). Font: Caveat (Google Fonts).
+          by Pinterest storybook references).
         </p>
+        <p>Font: Caveat (Google Fonts).</p>
         <p>
           Code: Developed independently by Daisy Chang, with GitHub Copilot
           utilized for debugging and troubleshooting assistance.
         </p>
       </dialog>
 
-      <!-- pause -->
       <dialog id="pause-dialog" aria-labelledby="pause-title">
         <h2 id="pause-title">Game paused</h2>
         <nav class="menu-actions" aria-label="Pause menu">
@@ -172,7 +282,6 @@
           </button>
         </nav>
       </dialog>
-
     </main>
   </body>
 </html>

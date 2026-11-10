@@ -1,17 +1,20 @@
-const startMenu = document.getElementById("start-menu");
+
+const Allbuttons = document.querySelectorAll("button[id]");
+
+const startMenu = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
 const resultScreen = document.getElementById("result-screen");
 const creditsDialog = document.getElementById("credits-dialog");
 const pauseDialog = document.getElementById("pause-dialog");
 
-const Allbuttons = document.querySelectorAll("button[id]");
-
 const gameTimerOutput = document.getElementById("game-timer");
 const currentScore = document.querySelector(".current-score");
 const finalScore = document.querySelector(".final-score");
-const gameDuration = 30;
+
+// timer settings-----------------------------------------------------------------------------
+const gameDuration = 10;
 let remainingSeconds = gameDuration;
-let timerInterval = null;
+let timerID = null;
 
 function updateTimer() {
   const minutes = Math.floor(remainingSeconds / 60);
@@ -20,10 +23,11 @@ function updateTimer() {
 }
 
 function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
+  clearInterval(timerID);
+  timerID = null;
 }
 
+//screen switching functions-----------------------------------------------------------------------------
 function showGameScreen() {
   stopTimer();
   remainingSeconds = gameDuration;
@@ -32,19 +36,19 @@ function showGameScreen() {
   gameScreen.hidden = false;
   resultScreen.hidden = true;
 
-  timerInterval = setInterval(() => {
-    if (pauseDialog.open) return;
+//   timerID = setInterval(() => {
+//     if (pauseDialog.open) return;
 
-    remainingSeconds -= 1;
-    updateTimer();
+//     remainingSeconds -= 1;
+//     updateTimer();
 
-    if (remainingSeconds <= 0) {
-      stopTimer();
-      finalScore.textContent = currentScore.textContent;
-      gameScreen.hidden = true;
-      resultScreen.hidden = false;
-    }
-  }, 1000);
+//     if (remainingSeconds <= 0) {
+//       stopTimer();
+//       finalScore.textContent = currentScore.textContent;
+//       gameScreen.hidden = true;
+//       resultScreen.hidden = false;
+//     }
+//   }, 1000);
 }
 
 function showStartMenu() {
@@ -54,6 +58,7 @@ function showStartMenu() {
   resultScreen.hidden = true;
 }
 
+// button event listeners-----------------------------------------------------------------------------
 Allbuttons.forEach((button) => {
   button.addEventListener("click", (event) => {
     switch (event.currentTarget.id) {

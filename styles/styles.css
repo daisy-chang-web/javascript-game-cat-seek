@@ -44,19 +44,24 @@ body {
 
 /* Layout */
 .screen-wrapper{
-  display: grid;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  overflow: hidden;
 }
 
 /* start-screen -----------------------------------------------------------------------------------*/
 .start-screen {
   display: grid;
-  width: 100%;
-  height: 100vh;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * (16 / 9)));
+  height: min(100vh, calc(100vw * (9 / 16)));
   place-items: center;
-  background: var(--primary-color) url("../images/start-bg.jpg") center / auto 100% no-repeat;
+  background: var(--primary-color) url("../images/start-bg.jpg") center / 100% 100% no-repeat;
 }
 
 .menu {
@@ -96,12 +101,10 @@ body {
 /* game-screen -----------------------------------------------------------------------------------*/
 .game-screen{
   position: relative;
-  display: grid;
-  width: 100%;
-  height: 100vh;
-  aspect-ratio: 16/9;
-  place-items: center;
-  background: var(--primary-color) url("../images/game-bg.jpg") center / auto 100% no-repeat;
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * (16 / 9)));
+  height: min(100vh, calc(100vw * (9 / 16)));
+  background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
 }
 .game-status{
   position:absolute;
@@ -130,7 +133,157 @@ body {
   color: var(--text-color);
 }
 
+/* hiding spots */
+.spot {
+  position: absolute;
+}
 
+.mask-container {
+  width: 6.6vw;
+  height: 5.8vw;
+  position: relative;
+  overflow: hidden; 
+}
+
+.cat {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  transition: transform 0.25s ease-out; 
+  border:#14110f solid 1px;
+}
+
+.spot-picture {
+  top: 23%;
+  left: 15.8%;
+}
+.spot-picture .cat {
+  transform: translateY(100%);
+}
+.spot-picture.show .cat {
+  transform: translateY(0);
+}
+
+.spot-pot {
+  top: 65.3%;
+  left: 5.6%;
+}
+.spot-pot .cat {
+  transform: translateY(100%);
+}
+.spot-pot.show .cat {
+  transform: translateY(0);
+}
+
+.spot-plants {
+  top: 44.5%;
+  left: 29%;
+}
+.spot-plants .cat {
+  transform: translateY(100%);
+}
+.spot-plants.show .cat {
+  transform: translateY(0);
+}
+
+.spot-sofa {
+  top: 31.8%;
+  left: 48%;
+}
+.spot-sofa .cat {
+  transform: translateY(100%);
+}
+.spot-sofa.show .cat {
+  transform: translateY(0);
+}
+
+.spot-floor {
+  bottom: 0%;
+  left: 43%;
+}
+.spot-floor .cat {
+  transform: translateY(100%);
+}
+.spot-floor.show .cat {
+  transform: translateY(0);
+}
+
+.spot-window {
+  top: 28.5%;
+  left: 70.8%;
+}
+.spot-window .cat {
+  transform: translateY(100%);
+}
+.spot-window.show .cat {
+  transform: translateY(0);
+}
+
+.spot-table {
+  top: 60%;
+  left: 65.5%;
+}
+.spot-table .cat {
+  transform: translateY(100%);
+}
+.spot-table.show .cat {
+  transform: translateY(0);
+}
+
+.spot-box {
+  top: 86%;
+  left: 82%;
+}
+.spot-box .cat {
+  transform: translateY(100%);
+}
+.spot-box.show .cat {
+  transform: translateY(0);
+}
+
+.spot-drawer {
+  top: 64%;
+  left: 20%;
+}
+.spot-drawer .cat {
+  transform: translateY(100%);
+}
+.spot-drawer.show .cat {
+  transform: translateY(0);
+}
+
+.spot-celling {
+  top: 0%;
+  left: 50%;
+}
+.spot-celling .cat {
+  transform: translateY(100%);
+}
+.spot-celling.show .cat {
+  transform: translateY(0);
+}
+
+.spot-under-table {
+  top: 85%;
+  left: 66%;
+}
+.spot-under-table .cat {
+  transform: translateY(100%);
+}
+.spot-under-table.show .cat {
+  transform: translateY(0);
+}
+
+.spot-curtain {
+  top: 30%;
+  left: 91%;
+}
+.spot-curtain .cat {
+  transform: translateY(100%);
+}
+.spot-curtain.show .cat {
+  transform: translateY(0);
+}
 
 /* result-screen --------------------------------------------------------------------------------*/
 .result-screen {
