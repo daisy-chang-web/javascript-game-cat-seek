@@ -207,9 +207,9 @@ function showSingleCat() {
   const CurrentCat = getRandomCat();
   const catImg = spot.querySelector(".cat");
 
-  spot.classList.add("show");
   catImg.src = `images/cat-${CurrentCat.emotion}-idle.png`;
   catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat peeking out`;
+  spot.classList.add("show");
 
   catImg.onclick = () => {
     if (!isPetted && spot.classList.contains("show")) {
