@@ -10,7 +10,8 @@
 body {
   display: flex;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   place-items: center;
   overflow: hidden;
@@ -26,6 +27,7 @@ body:active{
 }
 button{
   cursor: inherit;
+  color:var(--text-color);
 }
 a{
   color:var(--border-focus-btn);
@@ -59,6 +61,7 @@ a:hover{
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,12 +69,16 @@ a:hover{
   overflow: hidden;
 }
 
+.orientation-warning {
+  display: none;
+}
+
 /* start-screen -----------------------------------------------------------------------------------*/
 .start-screen {
   display: grid;
   aspect-ratio: 16 / 9;
-  width: min(100vw, calc(100vh * (16 / 9)));
-  height: min(100vh, calc(100vw * (9 / 16)));
+  width: min(100vw, calc(100dvh * (16 / 9)));
+  height: min(100dvh, calc(100vw * (9 / 16)));
   place-items: center;
   background: var(--primary-color) url("../images/start-bg.jpg") center / 100% 100% no-repeat;
 }
@@ -115,8 +122,8 @@ a:hover{
   container-type: size;
   position: relative;
   aspect-ratio: 16 / 9;
-  width: min(100vw, calc(100vh * (16 / 9)));
-  height: min(100vh, calc(100vw * (9 / 16)));
+  width: min(100vw, calc(100dvh * (16 / 9)));
+  height: min(100dvh, calc(100vw * (9 / 16)));
   background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
 }
 
@@ -142,14 +149,14 @@ a:hover{
   display:flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3%;
+  gap: clamp(0.25rem, 1cqw, 0.75rem);
 }
 
 .status-wrapper{
   display: flex;
-  height: var(--status-height);
+  min-height: var(--status-height);
   align-items: center;
-  padding: 0 15%;
+  padding: 0 clamp(0.5rem, 1.5cqw, 1rem);
   font-size: clamp(16px, 2cqw, 1.8rem);
   font-weight: 700;
   line-height: 1.1;
@@ -168,7 +175,9 @@ a:hover{
 
 .pause-button.status-wrapper {
   width: var(--status-height);
+  height: var(--status-height);
   min-width: var(--status-height);
+  min-height: var(--status-height);
   padding: 0;
   justify-content: center;
 }
@@ -176,6 +185,12 @@ a:hover{
   width: clamp(16px, 2cqw, 1.8rem);
   height: clamp(16px, 2cqw, 1.8rem);
   color: var(--text-color);
+}
+
+@media (max-width: 1000px) {
+  .game-status .border-style {
+    border-width: 2px;
+  }
 }
 
 /* hiding spots */
@@ -340,11 +355,11 @@ a:hover{
 /* result-screen --------------------------------------------------------------------------------*/
 .result-screen {
   display: grid;
-  width: 100%;
-  height: 100vh;
-  aspect-ratio: 16/9;
+  width: min(100vw, calc(100dvh * (16 / 9)));
+  height: min(100dvh, calc(100vw * (9 / 16)));
+  aspect-ratio: 16 / 9;
   place-items: center;
-  background: var(--primary-color) url("../images/result-bg.jpg") center / auto 100% no-repeat;
+  background: var(--primary-color) url("../images/result-bg.jpg") center / 100% 100% no-repeat;
 }
 
 .result-menu p{
@@ -410,4 +425,22 @@ dialog p {
 
 #pause-dialog .menu-actions {
   margin-top: 1.5rem;
+}
+
+@media (orientation: portrait) {
+  .orientation-warning {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: var(--primary-color);
+    text-align: center;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  dialog {
+    visibility: hidden;
+  }
 }
