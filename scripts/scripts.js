@@ -325,6 +325,7 @@ startMenu.addEventListener("click", () => {
 
 Allbuttons.forEach((button) => {
   button.addEventListener("click", (event) => {
+    meowSound.play();
     switch (event.currentTarget.id) {
       case "start-btn":
         levelDialog.showModal();
