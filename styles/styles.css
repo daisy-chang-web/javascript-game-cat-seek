@@ -104,19 +104,30 @@ a:hover{
 .menu-actions {
   display: grid;
   justify-items: center;
-  gap: clamp(0.75rem, 2.5vh, 1.5rem);
-  margin-top: clamp(1rem, 5vh, 3rem);
+  gap: 10%;
+  margin-top: 3%;
 }
 
 .menu-button {
+  display:flex;
+  justify-content:center;
+  align-items:center;
   width: min(100%, 18rem);
   min-height: 3rem;
-  padding: 0.3rem 1rem;
+  padding: 1rem 1rem;
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.1;
 }
 
+@media (max-width: 1000px) {
+  .menu-button {
+    width: min(100%, 15rem);
+    min-height: 2.5rem;
+    padding: 0.2rem 0.75rem;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+}
 /* game-screen -----------------------------------------------------------------------------------*/
 .game-screen{
   container-type: size;
