@@ -1,3 +1,9 @@
+/*
+AI assistance: GitHub Copilot
+Date: November 2026
+Support provided: Debugging and guidance on countdowns, cat spawning, pause/resume behavior; responsive CSS for game screens, and dialogs.
+Learning outcome: Learned how HTML, CSS, and JavaScript work together to build interactive game screens, manage timers and game state, handle audio playback, and style responsive UI.
+*/
 const Allbuttons = document.querySelectorAll("button[id]");
 
 const startMenu = document.getElementById("start-screen");
@@ -115,7 +121,10 @@ function pauseGame() {
 
   catTimeouts.forEach((task) => {
     clearTimeout(task.timeoutID);
-    task.remaining = Math.max(0, task.remaining - (Date.now() - task.startedAt));
+    task.remaining = Math.max(
+      0,
+      task.remaining - (Date.now() - task.startedAt),
+    );
     task.timeoutID = null;
     task.startedAt = null;
   });
@@ -354,7 +363,7 @@ Allbuttons.forEach((button) => {
         bgm.play();
         showStartMenu();
         break;
-        case "again-btn":
+      case "again-btn":
         showGameScreen();
         break;
       case "back-btn":
