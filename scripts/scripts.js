@@ -306,12 +306,19 @@ function showStartMenu() {
 }
 
 // button event listeners-----------------------------------------------------------------------------
+startMenu.addEventListener("click", () => {
+  if (bgm.paused) {
+    bgm.play().catch((error) => {
+      console.error("Background music could not be played:", error);
+    });
+  }
+});
+
 Allbuttons.forEach((button) => {
   button.addEventListener("click", (event) => {
     switch (event.currentTarget.id) {
       case "start-btn":
         levelDialog.showModal();
-        bgm.play().catch(e => console.log("BGM was blocked by browser：", e));
         break;
       case "easy-btn":
         setLevel("easy");

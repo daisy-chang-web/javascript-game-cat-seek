@@ -12,8 +12,9 @@
       rel="apple-touch-icon"
       sizes="180x180"
       href="images/apple-touch-icon.png"
-    /> -->
-    <link rel="manifest" href="images/site.webmanifest" />
+    /> 
+    <link rel="manifest" href="images/site.webmanifest" />-->
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -243,7 +244,12 @@
       <!-- Popup------------------------------------------------------------------------------------------------->
       <dialog id="level-dialog" aria-labelledby="level-title">
         <h2 id="level-title">Select Level</h2>
-          <button id="close-level-btn" class="close-btn" type="button" aria-label="Close credits">
+        <button
+          id="close-level-btn"
+          class="close-btn"
+          type="button"
+          aria-label="Close credits"
+        >
           x
         </button>
         <nav class="menu-actions" aria-label="Level menu">
@@ -272,18 +278,41 @@
       </dialog>
 
       <dialog id="credits-dialog" aria-labelledby="credits-title">
-        <button id="close-credits-btn" class="close-btn" type="button" aria-label="Close credits">
+        <button
+          id="close-credits-btn"
+          class="close-btn"
+          type="button"
+          aria-label="Close credits"
+        >
           x
         </button>
         <h2 id="credits-title">Credits &amp; Attributions</h2>
         <p>
-          Visuals: Illustrated and redrawn by Daisy Chang (scene layout inspired
-          by Pinterest storybook references).
+          <strong>Visuals :</strong>  Illustrated and redrawn by Daisy Chang 
+          background scene inspired by 
+          <a
+            href="https://opentracks.com/bgm/detail/23793"
+            target="_blank"
+            rel="noopener noreferrer"
+            > ✧₊⁺ꜱσɾɑ⁺₊✧ on Pinterest</a
+          >
+          .
         </p>
-        <p>Font: Caveat (Google Fonts).</p>
+        <p><strong>Font :</strong>  Caveat (Google Fonts).</p>
         <p>
-          Code: Developed independently by Daisy Chang, with GitHub Copilot
-          utilized for debugging and troubleshooting assistance.
+          <strong>BGM :</strong>
+          <a
+            href="https://opentracks.com/bgm/detail/23793"
+            target="_blank"
+            rel="noopener noreferrer"
+          >  "sweet potato"
+          </a>
+          by えだまめ88 — Sourced from OpenTracks（DOVA-SYNDROME） .
+        </p>
+        <p>
+          <strong>Code :</strong>  Developed independently by Daisy Chang,
+          with AI assistance (GitHub Copilot & Gemini) utilized for pause state
+          management, timeout queuing logic, and troubleshooting.
         </p>
       </dialog>
 
