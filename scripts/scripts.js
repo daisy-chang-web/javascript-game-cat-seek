@@ -45,7 +45,7 @@ const levels = [
 
 const cats = [
   {
-    emotion: "Energetic",
+    emotion: "energetic",
     breed: "orange",
     pet: "feels very happy",
     miss: "make a funny face",
