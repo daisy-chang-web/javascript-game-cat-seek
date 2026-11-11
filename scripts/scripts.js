@@ -13,7 +13,11 @@ const currentScore = document.querySelector(".current-score");
 const finalScore = document.querySelector(".final-score");
 const resultMessage = document.getElementById("game-result-title");
 const spots = document.querySelectorAll(".spot");
-const meowSound = new Audio("../media/meow.wav");
+const meowSound = new Audio("media/meow.wav");
+const bgm = new Audio("media/bgm.mp3");
+bgm.loop = true;
+meowSound.volume = 0.3;
+bgm.volume = 0.2;
 
 const gameDuration = 30;
 let remainingSeconds = gameDuration;
@@ -119,6 +123,7 @@ function pauseGame() {
   if (!pauseDialog.open) {
     pauseDialog.showModal();
   }
+  bgm.pause();
 }
 
 function resumeGame() {
@@ -126,6 +131,7 @@ function resumeGame() {
   isPaused = false;
 
   catTimeouts.forEach((task) => runCatTimeout(task));
+  bgm.play();
 }
 
 function clearCatTimeouts() {
@@ -305,6 +311,7 @@ Allbuttons.forEach((button) => {
     switch (event.currentTarget.id) {
       case "start-btn":
         levelDialog.showModal();
+        bgm.play().catch(e => console.log("BGM was blocked by browser：", e));
         break;
       case "easy-btn":
         setLevel("easy");
@@ -332,10 +339,12 @@ Allbuttons.forEach((button) => {
         break;
       case "reset-btn":
         pauseDialog.close();
+        bgm.play();
         showGameScreen();
         break;
       case "pause-back-btn":
         pauseDialog.close();
+        bgm.play();
         showStartMenu();
         break;
         case "again-btn":
