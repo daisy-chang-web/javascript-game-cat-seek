@@ -150,7 +150,7 @@ a:hover{
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Caveat', sans-serif;
-  font-size: 8rem;
+  font-size: clamp(5rem, 8cqw ,8rem);
   font-weight: bold;
   color: var(--text-color);
   z-index: 50;
