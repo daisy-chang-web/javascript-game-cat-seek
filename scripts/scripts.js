@@ -13,6 +13,7 @@ const currentScore = document.querySelector(".current-score");
 const finalScore = document.querySelector(".final-score");
 const resultMessage = document.getElementById("game-result-title");
 const spots = document.querySelectorAll(".spot");
+const meowSound = new Audio("../media/meow.wav");
 
 const gameDuration = 30;
 let remainingSeconds = gameDuration;
@@ -198,6 +199,7 @@ function showSingleCat() {
   catImg.onclick = () => {
     if (!isPetted && spot.classList.contains("show")) {
       isPetted = true;
+      meowSound.play();
       catImg.src = `images/cat-${CurrentCat.emotion}-pet.png`;
       catImg.alt = `${CurrentCat.emotion} ${CurrentCat.breed} cat ${CurrentCat.pet}`;
       removeCat(spot);

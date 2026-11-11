@@ -345,8 +345,8 @@ button{
 
 .result-menu p{
   margin: 0;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
+  margin-bottom: 2%;
+  font-size: clamp(1rem, 3vw, 2.5rem);
   font-weight: 700;
   line-height: 1.1;
 }
