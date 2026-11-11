@@ -135,6 +135,10 @@ a:hover{
   aspect-ratio: 16 / 9;
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
+  touch-action: none;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
   background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
 }
 
