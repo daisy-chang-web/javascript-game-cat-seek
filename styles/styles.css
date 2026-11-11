@@ -19,6 +19,14 @@ body {
   color: var(--text-color);
   font-family: "Caveat", cursive;
   font-size: 1.2rem;
+  cursor: url('../images/paw-icon.svg') 16 16, auto;
+}
+
+body:active{
+  cursor: url('../images/heart-icon.svg') 16 16, auto;
+}
+button{
+  cursor: inherit;
 }
 
 /* Element */
@@ -108,6 +116,7 @@ body {
   background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
 }
 
+
 .countdown-text {
   position: absolute;
   top: 50%;
@@ -165,7 +174,7 @@ body {
   color: var(--text-color);
 }
 
-/* hiding spots -----------------------------*/
+/* hiding spots */
 .spot {
   position: absolute;
 }
