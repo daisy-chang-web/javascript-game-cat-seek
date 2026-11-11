@@ -7,7 +7,6 @@
   --text-color: #14110f;
 }
 
-/* Typography */
 body {
   display: flex;
   width: 100%;
@@ -28,8 +27,13 @@ body:active{
 button{
   cursor: inherit;
 }
+a{
+  color:var(--border-focus-btn);
+}
+a:hover{
+  color:var(--border-color);
+}
 
-/* Element */
 [hidden] {
   display: none !important;
 }
@@ -401,6 +405,7 @@ dialog p {
 .close-btn:focus-visible {
   outline: 3px solid var(--border-focus-color);
   outline-offset: 3px;
+  border-radius:10px;
 }
 
 #pause-dialog .menu-actions {
