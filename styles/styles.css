@@ -21,7 +21,6 @@ body {
   font-size: 1.2rem;
   cursor: url('../images/paw-icon.svg') 16 16, auto;
 
-  touch-action: none;
   overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
@@ -137,6 +136,7 @@ a:hover{
 .game-screen{
   container-type: size;
   position: relative;
+  touch-action: none;
   aspect-ratio: 16 / 9;
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
@@ -389,16 +389,20 @@ a:hover{
 /* dialogs --------------------------------------------------------------------------------------*/
 dialog {
   position: fixed;
-  width: min(90vw, 28rem);
-  max-height: min(85vh, 40rem);
+  box-sizing: border-box;
+  width: min(90vw, 28rem, 110.75dvh);
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 456 / 350;
   margin: auto;
-  padding: clamp(1.5rem, 5vw, 2.5rem);
-  overflow: auto;
-  border: 4px solid var(--border-color);
-  border-radius: 2rem;
-  background: var(--primary-color);
+  padding:
+    clamp(3rem, 7vh, 4rem)
+    clamp(1.5rem, 12vw, 3.5rem)
+    clamp(1.5rem, 5vh, 2.5rem);
+  overflow: hidden;
+  border: 0;
+  background: url("../images/dialog.svg") center / 100% 100% no-repeat;
   color: var(--text-color);
-  box-shadow: 0 1rem 3rem rgb(49 37 29 / 18%);
 }
 
 dialog::backdrop {
@@ -407,8 +411,8 @@ dialog::backdrop {
 }
 
 dialog h2 {
-  margin: 0 2rem 1rem 0;
-  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  margin: 0 2.5rem 1rem 0;
+  font-size: clamp(1.25rem, 5vw, 2.25rem);
   line-height: 1.1;
 }
 
@@ -422,15 +426,35 @@ dialog p {
   line-height: 1.5;
 }
 
+@media (min-width: 1001px) {
+  #credits-dialog {
+    width: min(90vw, 34rem, 110.75dvh);
+  }
+}
+
+#credits-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.credits-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
 .close-btn {
   position: absolute;
   display:block;
-  top: 0;
-  right: 0.9rem;
+  top: 6%;
+  right: 7%;
   padding: 0 0.7rem;
   border: 0;
   background: transparent;
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  line-height: 1;
 }
 
 .close-btn:focus-visible {
