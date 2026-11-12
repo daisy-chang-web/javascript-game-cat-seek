@@ -21,6 +21,7 @@ body {
   font-size: 1.2rem;
   cursor: url('../images/paw-icon.svg') 16 16, auto;
 
+  touch-action: none;
   overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
@@ -136,7 +137,6 @@ a:hover{
 .game-screen{
   container-type: size;
   position: relative;
-  touch-action: none;
   aspect-ratio: 16 / 9;
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
@@ -418,6 +418,10 @@ dialog h2 {
 
 dialog p {
   margin: 0 0 1rem;
+}
+
+#credits-dialog{
+  padding: clamp(1.5rem, 5vh, 2.5rem);
 }
 
 #credits-dialog p {
