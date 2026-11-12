@@ -244,7 +244,9 @@ function stopCatSpawner() {
 }
 
 function updateResultMessage() {
-  if (score / total >= 4 / 5) {
+  if (score / total === 1) {
+    resultMessage.textContent = "You caught us all?! that's amazing! 😸";
+  } else if (score / total >= 4 / 5) {
     resultMessage.textContent = "You caught us! Fine, you win! 😸";
   } else if (score / total >= 1 / 2) {
     resultMessage.textContent = "Is that all? I wasn't even trying! 😼";
