@@ -1,7 +1,7 @@
 :root {
   --primary-color: #fdf7ed;
   --button-color: #ffffff;
-  --backdrop-color:#fdf7ed74;
+  --backdrop-color: #fdf7ed74;
   --border-color: #625b55;
   --border-focus-color: #31251d;
   --text-color: #14110f;
@@ -19,7 +19,9 @@ body {
   color: var(--text-color);
   font-family: "Caveat", cursive;
   font-size: 1.2rem;
-  cursor: url('../images/paw-icon.svg') 16 16, auto;
+  cursor:
+    url("../images/paw-icon.svg") 16 16,
+    auto;
 
   touch-action: none;
   overscroll-behavior: none;
@@ -27,18 +29,20 @@ body {
   -webkit-user-select: none;
 }
 
-body:active{
-  cursor: url('../images/heart-icon.svg') 16 16, auto;
+body:active {
+  cursor:
+    url("../images/heart-icon.svg") 16 16,
+    auto;
 }
-button{
+button {
   cursor: inherit;
-  color:var(--text-color);
+  color: var(--text-color);
 }
-a{
-  color:var(--border-focus-btn);
+a {
+  color: var(--border-focus-btn);
 }
-a:hover{
-  color:var(--border-color);
+a:hover {
+  color: var(--border-color);
 }
 
 [hidden] {
@@ -52,7 +56,7 @@ a:hover{
 .primary-bg {
   background: var(--primary-color);
 }
-.border-style{
+.border-style {
   border: 4px solid var(--border-color);
   border-radius: 999px;
 }
@@ -62,7 +66,7 @@ a:hover{
 }
 
 /* Layout */
-.screen-wrapper{
+.screen-wrapper {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -85,7 +89,8 @@ a:hover{
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
   place-items: center;
-  background: var(--primary-color) url("../images/start-bg.jpg") center / 100% 100% no-repeat;
+  background: var(--primary-color) url("../images/start-bg.jpg") center / 100%
+    100% no-repeat;
 }
 
 .menu {
@@ -114,9 +119,9 @@ a:hover{
 }
 
 .menu-button {
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: min(100%, 18rem);
   min-height: 3rem;
   padding: 1rem 1rem;
@@ -134,41 +139,41 @@ a:hover{
   }
 }
 /* game-screen -----------------------------------------------------------------------------------*/
-.game-screen{
+.game-screen {
   container-type: size;
   position: relative;
   aspect-ratio: 16 / 9;
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
-  background: var(--primary-color) url("../images/game-bg.jpg") center / 100% 100% no-repeat;
+  background: var(--primary-color) url("../images/game-bg.jpg") center / 100%
+    100% no-repeat;
 }
-
 
 .countdown-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Caveat', sans-serif;
-  font-size: clamp(5rem, 8cqw ,8rem);
+  font-family: "Caveat", sans-serif;
+  font-size: clamp(5rem, 8cqw, 8rem);
   font-weight: bold;
   color: var(--text-color);
   z-index: 50;
   pointer-events: none;
 }
 
-.game-status{
+.game-status {
   --status-height: 5cqw;
-  position:absolute;
-  left:5%;
-  top:5%;
-  display:flex;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: clamp(0.25rem, 1cqw, 0.75rem);
 }
 
-.status-wrapper{
+.status-wrapper {
   display: flex;
   min-height: var(--status-height);
   align-items: center;
@@ -197,7 +202,7 @@ a:hover{
   padding: 0;
   justify-content: center;
 }
-.icon{
+.icon {
   width: clamp(16px, 2cqw, 1.8rem);
   height: clamp(16px, 2cqw, 1.8rem);
   color: var(--text-color);
@@ -218,14 +223,14 @@ a:hover{
   width: 6.6cqw;
   height: 5.8cqw;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .cat {
   position: absolute;
   width: 100%;
   height: auto;
-  transition: transform 0.5s ease-out; 
+  transition: transform 0.5s ease-out;
 
   user-select: none;
   -webkit-user-select: none;
@@ -375,10 +380,11 @@ a:hover{
   height: min(100dvh, calc(100vw * (9 / 16)));
   aspect-ratio: 16 / 9;
   place-items: center;
-  background: var(--primary-color) url("../images/result-bg.jpg") center / 100% 100% no-repeat;
+  background: var(--primary-color) url("../images/result-bg.jpg") center / 100%
+    100% no-repeat;
 }
 
-.result-menu p{
+.result-menu p {
   margin: 0;
   margin-bottom: 2%;
   font-size: clamp(1rem, 3vw, 2.5rem);
@@ -395,9 +401,7 @@ dialog {
   min-height: 0;
   aspect-ratio: 456 / 350;
   margin: auto;
-  padding:
-    clamp(3rem, 7vh, 4rem)
-    clamp(1.5rem, 12vw, 3.5rem)
+  padding: clamp(3rem, 7vh, 4rem) clamp(1.5rem, 12vw, 3.5rem)
     clamp(1.5rem, 5vh, 2.5rem);
   overflow: hidden;
   border: 0;
@@ -406,7 +410,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background:var(--backdrop-color);
+  background: var(--backdrop-color);
   backdrop-filter: blur(5px);
 }
 
@@ -418,20 +422,23 @@ dialog h2 {
 
 dialog p {
   margin: 0 0 1rem;
-}
-
-#credits-dialog{
-  padding: clamp(1.5rem, 5vh, 2.5rem);
-}
-
-#credits-dialog p {
   font-family: Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+dialog ul li{
+  margin: 0 0 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
 @media (min-width: 1001px) {
   #credits-dialog {
+    width: min(90vw, 34rem, 110.75dvh);
+  }
+  #instruction-dialog {
     width: min(90vw, 34rem, 110.75dvh);
   }
 }
@@ -441,7 +448,7 @@ dialog p {
   flex-direction: column;
 }
 
-.credits-content {
+.instruction-content .credits-content {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -451,7 +458,7 @@ dialog p {
 
 .close-btn {
   position: absolute;
-  display:block;
+  display: block;
   top: 6%;
   right: 7%;
   padding: 0 0.7rem;
@@ -464,7 +471,7 @@ dialog p {
 .close-btn:focus-visible {
   outline: 3px solid var(--border-focus-color);
   outline-offset: 3px;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 #pause-dialog .menu-actions {

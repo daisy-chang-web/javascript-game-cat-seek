@@ -12,7 +12,7 @@
       rel="apple-touch-icon"
       sizes="180x180"
       href="images/apple-touch-icon.png"
-    /> 
+    />
     <link rel="manifest" href="images/site.webmanifest" />
 
     <!-- Google Fonts -->
@@ -46,6 +46,13 @@
               type="button"
             >
               Start Playing
+            </button>
+            <button
+              id="instruction-btn"
+              class="menu-button primary-bg border-style"
+              type="button"
+            >
+              How To Play
             </button>
             <button
               id="credits-btn"
@@ -280,6 +287,34 @@
         </nav>
       </dialog>
 
+      <dialog id="instruction-dialog" aria-labelledby="instruction-title">
+        <button
+          id="close-instruction-btn"
+          class="close-btn"
+          type="button"
+          aria-label="Close instruction"
+        >
+          x
+        </button>
+        <h2 id="instruction-title">Cat &amp; Seek</h2>
+        <div class="instruction-content">
+          <p>
+            Mama Cat is exhausted and fast asleep, but her 4 playful kittens
+            aren't ready for bed! Help find and pet the sneaky kittens hiding
+            around the living room before time runs out!
+          </p>
+          <ul>
+            <li>
+              <strong>Tap / Click</strong> the peeking kittens to pet them before they hide back
+              behind the furniture.
+            </li>
+            <li>
+              <strong>Beat the Clock:</strong> Find as many kittens as you can within 30 seconds.
+            </li>
+          </ul>
+        </div>
+      </dialog>
+
       <dialog id="credits-dialog" aria-labelledby="credits-title">
         <button
           id="close-credits-btn"
@@ -292,31 +327,34 @@
         <h2 id="credits-title">Credits &amp; Attributions</h2>
         <div class="credits-content">
           <p>
-            <strong>Visuals :</strong>  Illustrated and redrawn by Daisy Chang.
-            Background scene inspired by
+            <strong>Visuals :</strong> Illustrated and redrawn by Daisy Chang
+            background scene inspired by
             <a
               href="https://www.pinterest.com/pin/1126744400527946395/"
               target="_blank"
               rel="noopener noreferrer"
-              > ✧₊⁺ꜱσɾɑ⁺₊✧ on Pinterest</a
+            >
+              ✧₊⁺ꜱσɾɑ⁺₊✧ on Pinterest</a
             >
             .
           </p>
-          <p><strong>Font :</strong>  Caveat (Google Fonts).</p>
+          <p><strong>Font :</strong> Caveat (Google Fonts).</p>
           <p>
             <strong>BGM :</strong>
             <a
               href="https://opentracks.com/bgm/detail/23793"
               target="_blank"
               rel="noopener noreferrer"
-            >  "sweet potato"
+            >
+              "sweet potato"
             </a>
             by えだまめ88 — Sourced from OpenTracks（DOVA-SYNDROME） .
           </p>
           <p>
-            <strong>Code :</strong>  Developed independently by Daisy Chang,
-            with AI assistance (GitHub Copilot & Gemini) utilized for pause state
-            management, cat spawning logic, responsive layouts and troubleshooting.
+            <strong>Code :</strong> Developed independently by Daisy Chang, with
+            AI assistance (GitHub Copilot & Gemini) utilized for pause state
+            management, cat spawning logic, responsive layouts and
+            troubleshooting.
           </p>
         </div>
       </dialog>
