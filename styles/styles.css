@@ -422,9 +422,13 @@ dialog h2 {
 
 dialog p {
   margin: 0 0 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-#credits-dialog p {
+dialog ul li{
+  margin: 0 0 1rem;
   font-family: Arial, sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
