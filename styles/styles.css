@@ -427,7 +427,7 @@ dialog p {
 }
 
 @media (min-width: 1001px) {
-  #credits-dialog {
+  #instruction-dialog #credits-dialog {
     width: min(90vw, 34rem, 110.75dvh);
   }
 }
