@@ -409,6 +409,11 @@ dialog {
   color: var(--text-color);
 }
 
+#instruction-dialog, #credits-dialog {
+     padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 3.5rem)
+    clamp(1.5rem, 5vh, 2.5rem);
+  }
+
 dialog::backdrop {
   background: var(--backdrop-color);
   backdrop-filter: blur(5px);
@@ -435,10 +440,7 @@ dialog ul li{
 }
 
 @media (min-width: 1001px) {
-  #credits-dialog {
-    width: min(90vw, 34rem, 110.75dvh);
-  }
-  #instruction-dialog {
+  #instruction-dialog , #credits-dialog {
     width: min(90vw, 34rem, 110.75dvh);
   }
 }
