@@ -232,10 +232,6 @@ function showSingleCat() {
     }
   }, duration);
 
-  total++;
-  document.querySelectorAll(".total-cats").forEach((element) => {
-    element.textContent = total;
-  });
 }
 
 function stopCatSpawner() {
@@ -266,7 +262,7 @@ function showGameScreen() {
   updateTimer();
 
   score = 0;
-  total = 0;
+  total = Math.floor((gameDuration - (duration / 1000))*1000 / catSpawnInterval) ;
   currentScore.textContent = score;
   document.querySelectorAll(".total-cats").forEach((element) => {
     element.textContent = total;
