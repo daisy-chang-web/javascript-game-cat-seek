@@ -10,6 +10,7 @@ const startMenu = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
 const resultScreen = document.getElementById("result-screen");
 const levelDialog = document.getElementById("level-dialog");
+const instructionDialog = document.getElementById("instruction-dialog");
 const creditsDialog = document.getElementById("credits-dialog");
 const pauseDialog = document.getElementById("pause-dialog");
 const countdownDisplay = document.getElementById("countdown");
@@ -347,6 +348,12 @@ Allbuttons.forEach((button) => {
         break;
       case "close-level-btn":
         levelDialog.close();
+        break;
+      case "instruction-btn":
+        instructionDialog.showModal();
+        break;
+      case "close-instruction-btn":
+        instructionDialog.close();
         break;
       case "pause-button":
         pauseGame();
